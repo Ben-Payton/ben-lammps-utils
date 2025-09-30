@@ -118,5 +118,98 @@ def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lowe
     plt.savefig(outfile_name,bbox_inches="tight",transparent=is_transparent)
     print(f"{outfile_name} created")
 
+
+
+
+def plot_species_UI():
+    """ Interactive prompt for plotting species."""
+
+    print("Welcome to species out quick plotting, please choose an option:")
+    print("1: Plotting N maximum species.")
+    print("2: Plotting specified species.")
+
+    print("What is the location of the data you would like to plot?:")
+    data_frame = read_in_data(input("File Name: "))
+
+    available_choices = ["1","2"]
+
+    option_choice = input("Choice: ")
+
+    # Handling incorrect option selections
+    while not option_choice in available_choices:
+        print(f"{option_choice} is not an option, please select from available options:")
+        print("1: Plotting N maximum species.")
+        print("2: Plotting specified species.")
+
+    if option_choice == "1":
+        N_Species = int(input("How many species would you like to plot?: "))
+        species_to_plot = get_n_max_cycle(data_frame,N_Species)
+        # lower_time_step
+        print("What is the lower bound for time steps to plot (leave blank to allow all)")
+        lower_time = input("lowest time step: ")
+        if lower_time == "":
+            lower_time =None
+        else: lower_time = float(lower_time)
+
+
+        # Upper_time_step
+        print("What is the lower bound for time steps to plot (leave blank to allow all)")
+        highest_time = input("highest time step: ")
+        if highest_time == "":
+            highest_time = None
+        else: highest_time = float(highest_time)
+        # transparent_value
+        print("Would you like the background to be tansparent (default is no), type 'yes' confirm")
+        transparent_value = (input("Transparent?: ")).lower().strip()
+        transparent_value = transparent_value == "yes"
+        # outfile_name
+        print("What would you like the file to be named (leave blank for default species_vs_time.png)")
+        file_name = input("file name: ")
+        if file_name == "":
+            file_name = "species_vs_time.png"
+        # Figure Title
+        print("What would you like the figure title to be. (leave blank for 'Species over Time')")
+        plot_title = input("plot title: ")
+        if plot_title == "":
+            plot_title = "Species over Time"
+
+        species_vs_time_quickplot(data_frame,species_to_plot,lower_time,highest_time,transparent_value,file_name,plot_title)
+
+    if option_choice == "2":
+        print("Which species would you like to plot? Please seperate them by spaces.")
+        species_to_plot = input("Species to plot: ")
+        species_to_plot = species_to_plot.strip().split()
+        # lower_time_step
+        print("What is the lower bound for time steps to plot (leave blank to allow all)")
+        lower_time = input("lowest time step: ")
+        if lower_time == "":
+            lower_time =None
+        else: lower_time = float(lower_time)
+
+
+        # Upper_time_step
+        print("What is the lower bound for time steps to plot (leave blank to allow all)")
+        highest_time = input("highest time step: ")
+        if highest_time == "":
+            highest_time = None
+        else: highest_time = float(highest_time)
+        # transparent_value
+        print("Would you like the background to be tansparent (default is no), type 'yes' confirm")
+        transparent_value = (input("Transparent?: ")).lower().strip()
+        transparent_value = transparent_value == "yes"
+        # outfile_name
+        print("What would you like the file to be named (leave blank for default species_vs_time.png)")
+        file_name = input("file name: ")
+        if file_name == "":
+            file_name = "species_vs_time.png"
+        # Figure Title
+        print("What would you like the figure title to be. (leave blank for 'Species over Time')")
+        plot_title = input("plot title: ")
+        if plot_title == "":
+            plot_title = "Species over Time"
+
+        species_vs_time_quickplot(data_frame,species_to_plot,lower_time,highest_time,transparent_value,file_name,plot_title)
+
+
 if __name__ == "__main__":
     print("Hello  World")
