@@ -3,6 +3,16 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def read_in_data(file_name="species.out") -> pd.DataFrame:
+    """ Reads in a data file from a species out file or csv
+    
+    Parameters
+    ----------
+    
+    file_name (str): the name of the file to read in
+    
+    Returns
+    -------
+    Pandas Dataframe"""
     if file_name[-4:] == ".csv":
         species_df = pd.read_csv(file_name)
         for column in species_df.columns:
@@ -12,6 +22,20 @@ def read_in_data(file_name="species.out") -> pd.DataFrame:
     return species_df
 
 def get_n_max(dataframe:pd.DataFrame,num_vals:int,ignore:list=[]) -> list[str]:
+    """ Gets The N species that have maximum counts
+
+    Parameters
+    ----------
+    dataframe (pandas.DataFrame): the data frame read in from a species out file.
+
+    num_vals (int): The numberr of species to plot
+
+    ignore (list[str]): A list of species to ignore for maximums
+
+    Return
+    ------
+    list[str]: a list of N species that have maximum counts
+    """
     vals = []
     for column in dataframe.columns:
         if column != "Timestep" and not column in ignore:
@@ -20,6 +44,20 @@ def get_n_max(dataframe:pd.DataFrame,num_vals:int,ignore:list=[]) -> list[str]:
     return vals[:num_vals]
 
 def get_n_max_cycle(dataframe:pd.DataFrame,num_vals:int,ignore:list=[]) -> list[str]:
+    """ Gets The N species that have maximum counts interactively
+
+    Parameters
+    ----------
+    dataframe (pandas.DataFrame): the data frame read in from a species out file.
+
+    num_vals (int): The numberr of species to plot
+
+    ignore (list[str]): A list of species to ignore for maximums
+
+    Return
+    ------
+    list[str]: a list of N species that have maximum counts
+    """
 
     # Get the first set
     species_of_interest = get_n_max(dataframe,num_vals,ignore)
@@ -46,6 +84,24 @@ def get_n_max_cycle(dataframe:pd.DataFrame,num_vals:int,ignore:list=[]) -> list[
 
 
 def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lower=None,time_step_upper=None,is_transparent=False,outfile_name="species_vs_time.png",figure_title="Species over time"):
+    """ Quickly plots species out.
+    Parameters
+    ----------
+    dataframe (pandas.DataFrame): a dataframe containing information from the species out file.
+
+    keys_to_plot (list[str]): a list of the species of interest.
+
+    time_step_lower (int): the lower bound for time steps to plot
+
+    time_step_upper (int): the upper bound of time steps to plot
+
+    is_transparent (bool): Wether or not the background should be transparent
+
+    outfile_name (str): The name of the file figure will be saved to.
+
+    figure_title (str): The Title at the top of the figure.
+
+    """
     temp_dataframe = dataframe.copy()
     if time_step_lower != None:
         temp_dataframe = temp_dataframe[temp_dataframe["Timestep"]>= time_step_lower]
