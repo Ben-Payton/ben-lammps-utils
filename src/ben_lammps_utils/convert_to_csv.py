@@ -1,4 +1,4 @@
-from read_lammps_out import read_species_out
+from .read_lammps_out import read_species_out
 from glob import glob
 from tqdm import tqdm
 

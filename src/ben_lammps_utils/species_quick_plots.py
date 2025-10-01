@@ -1,4 +1,4 @@
-from read_lammps_out import read_species_out
+from .read_lammps_out import read_species_out
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -110,7 +110,6 @@ def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lowe
     
     fig, ax  =  plt.subplots(1,1)
     for key in keys_to_plot:
-        print(f"{key} selected")
         if key in temp_dataframe.columns:
             print(f"plotting {key}")
             ax.plot(temp_dataframe["Timestep"],temp_dataframe[key],label=key)
@@ -218,4 +217,3 @@ def plot_species_UI():
 
 if __name__ == "__main__":
     plot_species_UI()
-    print("Hello  World")
