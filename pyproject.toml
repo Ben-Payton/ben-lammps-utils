@@ -25,3 +25,4 @@ build-backend = "uv_build"
 dev = [
     "pytest>=8.4.2",
 ]
+
