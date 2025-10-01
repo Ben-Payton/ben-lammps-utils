@@ -1,4 +1,4 @@
-from .read_lammps_out import read_species_out
+from read_lammps_out import read_species_out
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -41,7 +41,7 @@ def get_n_max(dataframe:pd.DataFrame,num_vals:int,ignore:list=[]) -> list[str]:
         if column != "Timestep" and not column in ignore:
             vals.append((column,dataframe[column].max()))
     vals = sorted(vals,key=lambda x:x[1],reverse=True)
-    return vals[:num_vals]
+    return [i[0] for i in vals[:num_vals]]
 
 def get_n_max_cycle(dataframe:pd.DataFrame,num_vals:int,ignore:list=[]) -> list[str]:
     """ Gets The N species that have maximum counts interactively
@@ -108,14 +108,17 @@ def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lowe
     if time_step_upper != None:
         temp_dataframe = temp_dataframe[temp_dataframe["Timestep"]<= time_step_upper]
     
+    fig, ax  =  plt.subplots(1,1)
     for key in keys_to_plot:
+        print(f"{key} selected")
         if key in temp_dataframe.columns:
-            plt.plot(temp_dataframe["Timestep"],temp_dataframe[key],label=key)
-    plt.title(figure_title)
-    plt.xlabel("Time Step")
-    plt.ylabel("Species Count")
-    plt.legend()
-    plt.savefig(outfile_name,bbox_inches="tight",transparent=is_transparent)
+            print(f"plotting {key}")
+            ax.plot(temp_dataframe["Timestep"],temp_dataframe[key],label=key)
+    ax.set_title(figure_title)
+    ax.set_xlabel("Time Step")
+    ax.set_ylabel("Species Count")
+    ax.legend()
+    fig.savefig(outfile_name,bbox_inches="tight",transparent=is_transparent)
     print(f"{outfile_name} created")
 
 
@@ -124,12 +127,13 @@ def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lowe
 def plot_species_UI():
     """ Interactive prompt for plotting species."""
 
+    print("What is the location of the data you would like to plot?:")
+    data_frame = read_in_data(input("File Name: "))
+
     print("Welcome to species out quick plotting, please choose an option:")
     print("1: Plotting N maximum species.")
     print("2: Plotting specified species.")
 
-    print("What is the location of the data you would like to plot?:")
-    data_frame = read_in_data(input("File Name: "))
 
     available_choices = ["1","2"]
 
@@ -140,10 +144,11 @@ def plot_species_UI():
         print(f"{option_choice} is not an option, please select from available options:")
         print("1: Plotting N maximum species.")
         print("2: Plotting specified species.")
+        option_choice = input("Choice: ")
 
     if option_choice == "1":
         N_Species = int(input("How many species would you like to plot?: "))
-        species_to_plot = get_n_max_cycle(data_frame,N_Species)
+        species_to_plot = get_n_max_cycle(data_frame,N_Species,["No_Moles","No_Specs"])
         # lower_time_step
         print("What is the lower bound for time steps to plot (leave blank to allow all)")
         lower_time = input("lowest time step: ")
@@ -212,4 +217,5 @@ def plot_species_UI():
 
 
 if __name__ == "__main__":
+    plot_species_UI()
     print("Hello  World")

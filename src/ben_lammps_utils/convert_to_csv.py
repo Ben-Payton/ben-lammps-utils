@@ -1,4 +1,4 @@
-from .read_lammps_out import read_species_out
+from read_lammps_out import read_species_out
 from glob import glob
 from tqdm import tqdm
 
@@ -49,6 +49,7 @@ def species_to_csv_UI():
         print(f"{option_choice} is not an option, please select from available options:")
         print("1: Convert one species file to csv")
         print("2: Convert a bunch of species files to csv")
+        option_choice = input("Choice: ")
 
     # Handle the convert one species case
 
