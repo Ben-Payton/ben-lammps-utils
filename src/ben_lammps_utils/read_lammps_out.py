@@ -58,7 +58,7 @@ def read_species_out(file_name:str):
 
 
 def read_in_stdout(file_name:str):
-    ''' Reads a Lammps formatted standardout file and gives a pandas dataframe
+    ''' Reads a Lammps formatted standardout file and gives a list of pandas dataframes for each run section thermo data
     
     Parameters
     ----------

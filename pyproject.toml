@@ -1,7 +1,7 @@
 [project]
 name = "ben-lammps-utils"
-version = "0.6.0"
-description = "Add your description here"
+version = "0.7.0"
+description = "A set of tools for parsing Lammps and ReaxFF output "
 readme = "README.md"
 authors = [
     { name = "Ben", email = "bennyp2494@gmail.com" }

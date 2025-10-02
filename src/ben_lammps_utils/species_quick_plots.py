@@ -101,6 +101,11 @@ def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lowe
 
     figure_title (str): The Title at the top of the figure.
 
+    Returns
+    -------
+
+    The matplotlib figure and axis. Saves a figure.
+
     """
     temp_dataframe = dataframe.copy()
     if time_step_lower != None:
@@ -119,6 +124,8 @@ def species_vs_time_quickplot(dataframe:pd.DataFrame,keys_to_plot,time_step_lowe
     ax.legend()
     fig.savefig(outfile_name,bbox_inches="tight",transparent=is_transparent)
     print(f"{outfile_name} created")
+
+    return fig, ax
 
 
 
