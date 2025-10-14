@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def read_in_data(file_name="species.out") -> pd.DataFrame:
-    """ Reads in a data file from a species out file or csv
+    """ Reads in a data file from a species out file, csv, or parquet
     
     Parameters
     ----------
@@ -15,6 +15,11 @@ def read_in_data(file_name="species.out") -> pd.DataFrame:
     Pandas Dataframe"""
     if file_name[-4:] == ".csv":
         species_df = pd.read_csv(file_name)
+        for column in species_df.columns:
+            species_df[column] = pd.to_numeric(species_df[column])
+
+    if file_name[-8:] == ".parquet":
+        species_df = pd.read_parquet(file_name)
         for column in species_df.columns:
             species_df[column] = pd.to_numeric(species_df[column])
     else: 
