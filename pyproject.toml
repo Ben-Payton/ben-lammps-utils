@@ -1,6 +1,6 @@
 [project]
 name = "ben-lammps-utils"
-version = "0.8.0"
+version = "0.9.0"
 description = "A set of tools for parsing Lammps and ReaxFF output "
 readme = "README.md"
 authors = [
@@ -8,8 +8,10 @@ authors = [
 ]
 requires-python = ">=3.9"
 dependencies = [
+    "fastparquet>=2024.11.0",
     "matplotlib>=3.9.4",
     "pandas>=2.3.2",
+    "pyarrow>=21.0.0",
     "tqdm>=4.67.1",
 ]
 
