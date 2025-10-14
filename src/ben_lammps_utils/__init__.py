@@ -10,3 +10,7 @@ from .species_quick_plots import get_n_max
 from .species_quick_plots import get_n_max_cycle
 from .species_quick_plots import species_vs_time_quickplot
 from .species_quick_plots import plot_species_UI
+
+from .convert_to_parquet import convert_to_parquet
+from .convert_to_parquet import convert_all_to_parquet
+from .convert_to_parquet import species_to_parquet_UI
