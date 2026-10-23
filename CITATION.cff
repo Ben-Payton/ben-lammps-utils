@@ -1,0 +1,27 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: ben-lammps-utils
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Benjamin
+    family-names: Payton
+    orcid: 'https://orcid.org/0009-0001-3637-0658'
+    affiliation: Colorado School of Mines
+    email: bpayton@mines.edu
+repository-code: 'https://github.com/Ben-Payton/ben-lammps-utils'
+abstract: >-
+  A small python package to aid in analysis of Lammps ReaxFF
+  species output files, with simple CLI for basic
+  operations.
+keywords:
+  - Python
+  - Lammps
+  - ReaxFF
+  - Computational Chemistry
+  - Chemistry
+license: MIT
