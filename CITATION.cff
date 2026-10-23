@@ -1,7 +1,7 @@
 # This CITATION.cff file was generated with cffinit.
 # Visit https://bit.ly/cffinit to generate yours today!
 
-cff-version: 1.2.0
+cff-version: 1.3.0
 title: ben-lammps-utils
 message: >-
   If you use this software, please cite it using the
@@ -25,3 +25,7 @@ keywords:
   - Computational Chemistry
   - Chemistry
 license: MIT
+identifiers: 
+  - type: doi
+    value: 10.5281/zenodo.23602357
+date-released: 2026
