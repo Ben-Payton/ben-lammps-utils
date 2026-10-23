@@ -1,3 +1,5 @@
+![alt text](doi_badge.png)
+
 # Installation
 
 For the core CLI tools to be installed as scripts it is reccomended that you install them using uv.
